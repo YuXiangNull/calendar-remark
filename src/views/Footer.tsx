@@ -23,12 +23,13 @@ const SettingPage = ({
 }) => {
   const { t, i18n } = useTranslation();
   const {
-    preference: { firstDayOfWeek, showExtraDays, showDateContent, markWeekend },
+    preference: { firstDayOfWeek, showExtraDays, showDateContent, markWeekend, showRestBadgeOnWeekend },
     toggleShowExtraDays,
     setFirstDayOfWeekToMonday,
     setFirstDayOfWeekToSunday,
     toggleShowDateContent,
     toggleMarkWeekend,
+    toggleShowRestBadgeOnWeekend,
   } = usePreference();
 
   const options = [
@@ -73,6 +74,10 @@ const SettingPage = ({
         <div className='flex justify-between items-center'>
           <span>{t('settings.markWeekend')}</span>
           <Checkbox checked={markWeekend} onChange={toggleMarkWeekend} />
+        </div>
+        <div className='flex justify-between items-center'>
+          <span>{t('settings.showRestBadgeOnWeekend')}</span>
+          <Checkbox checked={showRestBadgeOnWeekend} onChange={toggleShowRestBadgeOnWeekend} />
         </div>
         <div className='flex justify-between items-center'>
           <span>{t('settings.showExtraDays')}</span>

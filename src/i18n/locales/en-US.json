@@ -129,6 +129,7 @@
     "showDateContent": "Show Date Content",
     "weekStart": "Week Starts On",
     "markWeekend": "Mark Weekend",
+    "showRestBadgeOnWeekend": "Show 'Rest' on Weekends",
     "showExtraDays": "Show Extra Days"
   },
   "theme": {

@@ -17,6 +17,8 @@ type Preference = {
   // 是否标记周末
   markWeekend: boolean;
   desktopLayout: 'horizontal' | 'vertical';
+  // 控制非工作日的周末是否显示"休"字
+  showRestBadgeOnWeekend: boolean;
 };
 
 const initialPreference: Preference = {
@@ -25,6 +27,7 @@ const initialPreference: Preference = {
   desktopLayout: 'horizontal',
   markWeekend: true,
   showDateContent: true,
+  showRestBadgeOnWeekend: true,
 };
 
 const preferenceAtom = atomWithStorage<Preference>(
@@ -84,6 +87,15 @@ export const usePreference = () => {
     setPreference({
       ...preference,
       markWeekend: !preference.markWeekend,
+      // 周末显示"休"字开关与标记周末开关联动
+      showRestBadgeOnWeekend: !preference.markWeekend,
+    });
+  };
+
+  const toggleShowRestBadgeOnWeekend = () => {
+    setPreference({
+      ...preference,
+      showRestBadgeOnWeekend: !preference.showRestBadgeOnWeekend,
     });
   };
 
@@ -96,5 +108,6 @@ export const usePreference = () => {
     toggleShowDateContent,
     toggleDesktopLayout,
     toggleMarkWeekend,
+    toggleShowRestBadgeOnWeekend,
   };
 };
