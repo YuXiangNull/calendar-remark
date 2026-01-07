@@ -11,7 +11,7 @@ import {
 import { isWeekend as isWeekendFunc } from 'date-fns';
 import i18n from '@/i18n';
 
-export const getBadgeText = (day: Day, customBadge?: string) => {
+export const getBadgeText = (day: Day, customBadge?: string, showRestBadgeOnWeekend: boolean = false) => {
   if (customBadge !== undefined) {
     return customBadge;
   }
@@ -26,6 +26,10 @@ export const getBadgeText = (day: Day, customBadge?: string) => {
   if (day.isToday) {
     // i18n 短标记：today
     return i18n.t('common.badgeShort.today', '今');
+  }
+  // 根据偏好设置决定是否在周末显示"休"字
+  if (showRestBadgeOnWeekend && day.isWeekend && !day.isWorkDay && !day.isRestDay) {
+    return i18n.t('common.badgeShort.restday', '休');
   }
   return '';
 };

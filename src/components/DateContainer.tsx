@@ -5,6 +5,7 @@ import { getBadgeText } from '@/libs/day';
 import DateComponent from './DateComponent';
 import { Day } from '@/interfaces/day';
 import { useTranslation } from 'react-i18next';
+import { usePreference } from '@/hooks/usePreference';
 
 const getContent = (day: Day, customContent?: string, isChineseLocale: boolean = true) => {
   if (customContent !== undefined) {
@@ -56,8 +57,9 @@ const DateContainer = ({
   const isChineseLocale = i18n.language.startsWith('zh');
   const { isToday, isRestDay, isWeekend, isWorkDay } = day;
   const { theme, badge: customBadge, content: customContent } = customDay;
+  const { preference } = usePreference();
 
-  const badgeText = getBadgeText(day, customBadge);
+  const badgeText = getBadgeText(day, customBadge, preference.showRestBadgeOnWeekend);
 
   const contentText = showContent ? getContent(day, customContent, isChineseLocale) : '';
 

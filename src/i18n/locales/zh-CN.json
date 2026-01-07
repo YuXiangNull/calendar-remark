@@ -129,6 +129,7 @@
     "showDateContent": "显示日期底部内容",
     "weekStart": "一周的开始",
     "markWeekend": "标记周末",
+    "showRestBadgeOnWeekend": "周末显示'休'",
     "showExtraDays": "显示非本月日期"
   },
   "theme": {
