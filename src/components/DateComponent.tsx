@@ -46,7 +46,8 @@ const DateComponent = ({
       {canShowBadge && (
         <span
           className={clsxm(
-            'absolute max-md:scale-75 w-5 h-5 !leading-5 top-0 right-0 text-xs text-white md:translate-x-1/2 md:-translate-y-1/2 translate-x-1/3 -translate-y-1/3 bg-red-500',
+            // 自适应文字数量
+            'absolute max-md:scale-75 min-w-5 h-5 !leading-5 top-0 right-0 text-xs text-white md:translate-x-1/2 md:-translate-y-1/2 translate-x-1/3 -translate-y-1/3 bg-red-500 flex items-center justify-center',
             badgeClassName
           )}
         >

@@ -108,22 +108,48 @@ const EditArea = ({ date, isEditing }: { date: Date; isEditing: boolean }) => {
   };
 
   // 限制为一个中文或者数字或者英文
+  // const validateBadgeValue = (value: string) => {
+  //   if (compositionFlag.current) {
+  //     setBadgeValue(value);
+  //     return;
+  //   }
+
+  //   // eslint-disable-next-line no-control-regex
+  //   const reg = /^[^\x00-\xff]{0,1}$|^[a-zA-Z\d]{0,1}$/;
+
+  //   let newValue = '';
+
+  //   if (reg.test(value)) {
+  //     newValue = value;
+  //   } else {
+  //     // 截取第一个字符，用于一次性输入多个字符的情况
+  //     newValue = value.slice(0, 1);
+  //   }
+  //   setBadgeValue(newValue);
+  //   updateBadge(newValue);
+  // };
+
+
+  // 限制为多个中文或者数字或者英文
   const validateBadgeValue = (value: string) => {
     if (compositionFlag.current) {
       setBadgeValue(value);
       return;
     }
 
+    // 限制字符长度
+    const maxLength = 2;
+
     // eslint-disable-next-line no-control-regex
-    const reg = /^[^\x00-\xff]{0,1}$|^[a-zA-Z\d]{0,1}$/;
+    const reg = new RegExp(`^[^\\x00-\\xff]{0,${maxLength}}$|^([a-zA-Z\\d]){0,${maxLength}}$`);
 
     let newValue = '';
 
     if (reg.test(value)) {
       newValue = value;
     } else {
-      // 截取第一个字符，用于一次性输入多个字符的情况
-      newValue = value.slice(0, 1);
+      // 截取前maxLength个字符，用于一次性输入多个字符的情况
+      newValue = value.slice(0, maxLength);
     }
     setBadgeValue(newValue);
     updateBadge(newValue);
